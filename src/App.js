@@ -13,10 +13,8 @@ useEffect(()=>{
 },[])
 
 const rload=()=>{
-  for(let i in array){
-    document.querySelectorAll('.box')[i].classList.remove('spin');
-    document.querySelectorAll('.box')[i].classList.remove('match');
-  }
+  setmatch([])
+  setflip([])
   setTimeout(()=>window.location.reload(),300);
 }
 
@@ -47,7 +45,7 @@ const rload=()=>{
     <div className='container'>
     <h1>Memory Game</h1>
     <main>
-    {array.map((item,i)=><div className={'box'+ (flip.includes(i) || match.includes(i) ? ' spin':'')} onClick={()=>check(i)} key={i}>{item}</div>)}
+    {array.map((item,i)=><div className={`box ${(flip.includes(i) || match.includes(i)) && 'spin'}`} onClick={()=>check(i)} key={i}>{item}</div>)}
     </main>
    
     <button onClick={()=>rload()}>reset game</button>
